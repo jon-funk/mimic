@@ -17,6 +17,10 @@ RUN curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/lin
     mv oc /usr/local/bin/ && \
     rm -f oc.tar.gz
 # jq
-RUN apt-get update && apt-get install -y jq
+RUN apt-get update \
+    && apt-get install -y jq \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 
 CMD ["npm", "start"]
