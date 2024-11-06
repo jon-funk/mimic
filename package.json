@@ -1,0 +1,14 @@
+{
+  "name": "mimic",
+  "version": "0.0.1",
+  "description": "A restful wrapper for nektos/act to provide a GitHub runner-like experience on-prem without a full GitHub runner provisioned",
+  "main": "main.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonathan Funk",
+  "license": "Apache-2.0"
+}

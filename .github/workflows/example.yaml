@@ -1,0 +1,27 @@
+name: Example Workflow
+on:
+  push:
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Echo a message
+        run: 'echo "Hello, this is a sample GitHub Action!"'
+      - name: Use a third-party action
+        uses: actions/hello-world-docker-action@v1
+        id: hello
+        with:
+          who-to-greet: Mona the Octocat
+      - name: Get the output from the third-party action
+        run: |
+          echo "Example step output: ${{ steps.hello.outputs.time }}"
+      - name: Check dependencies
+        run: |
+          helm -h
+          terraform -h
+          oc -h
+          kubectl -h
+          curl -h
+          jq -h
