@@ -1,7 +1,6 @@
 const { exec } = require('child_process');
 const pidusage = require('pidusage');
 
-// Function to run a basic act command
 function runAct(command = '') {
     return new Promise((resolve, reject) => {
         const actCommand = `act ${command}`;
@@ -22,4 +21,16 @@ function runAct(command = '') {
             resolve(stdout);
         });
     });
+}
+
+function processGitHubEvent(event) {
+    console.log(`Processing GitHub event: ${event}`);
+}
+
+function pollGitHutRepo(repoUrl) {
+    console.log(`Polling GitHub repo: ${repoUrl}`);
+}
+
+function queueGitHubEvent(event) {
+    console.log(`Queueing GitHub event: ${event}`);
 }
