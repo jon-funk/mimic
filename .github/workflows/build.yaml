@@ -3,23 +3,33 @@ on:
   push:
     branches:
       - main
+
+env:
+  TAG: latest
+  DOCKERFILE: Dockerfile
+  REGISTRY: ghcr.io
+
 jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: Checkout
         uses: actions/checkout@v2
       - name: Run Tests
         run: |
           echo "Running tests..."
           echo "Tests WIP"
           echo "OK"
-  build:
-    runs-on: ubuntu-latest
+  build-and-push:
     needs: tests
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: Checkout
         uses: actions/checkout@v2
       - name: Build
         run: |
-          docker build -t jon-funk/mimic:latest .
+          docker build -f ${{ env.DOCKERFILE }} -t ${{ env.REGISTRY }}/${{ github.repository }}:${{ env.TAG }} .
+      - name: Push
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login --username ${{ github.actor }} --password-stdin ${{ env.REGISTRY }}
+          docker push ${{ env.REGISTRY }}/${{ github.repository }}:${{ env.TAG }}
