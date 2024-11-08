@@ -2,7 +2,7 @@
   "name": "mimic",
   "version": "0.0.1",
   "description": "A restful wrapper for nektos/act to provide a GitHub runner-like experience on-prem without a full GitHub runner provisioned",
-  "main": "server.js",
+  "main": "src/server.js",
   "directories": {
     "test": "tests"
   },
